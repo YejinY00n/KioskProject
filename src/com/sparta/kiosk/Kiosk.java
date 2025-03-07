@@ -26,7 +26,13 @@ public class Kiosk {
 
     while(input != 0) {
       printAllMenu();
-      input = sc.nextInt();
+      try {
+        input = sc.nextInt();
+      }
+      catch (IllegalArgumentException e) {
+        System.out.println("유효하지 않은 입력입니다.");
+        continue;
+      }
     }
   }
 
@@ -44,7 +50,7 @@ public class Kiosk {
     drinkList.add(new MenuItem("Orange Drink", 4.0, "오렌지 쥬스"));
 
     // 사이드 메뉴
-    sideDishList.add(new MenuItem("French Fries", 2.5, "감자 튀김"));
+    sideDishList.add(new MenuItem("French Fries", 1.0, "감자 튀김"));
     sideDishList.add(new MenuItem("Cheese Sticks", 3.5, "치즈 스틱"));
     sideDishList.add(new MenuItem("Cone Salad", 3.0, "콘샐러드"));
   }
@@ -65,5 +71,6 @@ public class Kiosk {
       System.out.printf("%d. %15s | W %.2f | %s\n", i, sideDishList.get(i).name, sideDishList.get(i).price, sideDishList.get(i).info);
     }
     System.out.println("0. 종료");
+    System.out.print(">> 숫자를 입력하세요 : ");
   }
 }
