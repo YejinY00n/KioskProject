@@ -24,11 +24,13 @@ public class Kiosk {
   public void start() {
     int input = -1;
 
+    // 사용자 입력이 0 이면 종료
     while(input != 0) {
       printAllMenu();
       try {
         input = sc.nextInt();
       }
+      // 유효하지 않은 입력 예외 처리
       catch (IllegalArgumentException e) {
         System.out.println("유효하지 않은 입력입니다.");
         continue;
