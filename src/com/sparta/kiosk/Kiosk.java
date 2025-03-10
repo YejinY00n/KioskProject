@@ -49,7 +49,7 @@ public class Kiosk {
         continue;
       }
       selectedMenu = menu.getMenuItems(category, itemIndex);
-      System.out.printf("선택한 메뉴: %15s | W %.2f | %s\n\n", selectedMenu.name, selectedMenu.price, selectedMenu.info);
+      System.out.printf("선택한 메뉴: %15s | W %.2f | %s\n\n", selectedMenu.getName(), selectedMenu.getPrice(), selectedMenu.getInfo());
     }
   }
 

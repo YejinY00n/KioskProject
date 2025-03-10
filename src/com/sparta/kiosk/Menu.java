@@ -60,19 +60,19 @@ public class Menu {
     if(category == 1) {
       System.out.println("\n=== HAMBURGER ===");
       for(int i=0; i<burgerList.size(); i++) {
-        System.out.printf("%d. %15s | W %.2f | %s\n", i+1, burgerList.get(i).name, burgerList.get(i).price, burgerList.get(i).info);
+        System.out.printf("%d. %15s | W %.2f | %s\n", i+1, burgerList.get(i).getName(), burgerList.get(i).getPrice(), burgerList.get(i).getInfo());
       }
     }
     else if(category == 2) {
       System.out.println("\n=== DRINKS ===");
       for(int i=0; i<drinkList.size(); i++) {
-        System.out.printf("%d. %15s | W %.2f | %s\n", i+1, drinkList.get(i).name, drinkList.get(i).price, drinkList.get(i).info);
+        System.out.printf("%d. %15s | W %.2f | %s\n", i+1, drinkList.get(i).getName(), drinkList.get(i).getPrice(), drinkList.get(i).getInfo());
       }
     }
     else if(category == 3) {
       System.out.println("\n=== SIDE MENU ===");
       for(int i=0; i< sideMenuList.size(); i++) {
-        System.out.printf("%d. %15s | W %.2f | %s\n", i+1, sideMenuList.get(i).name, sideMenuList.get(i).price, sideMenuList.get(i).info);
+        System.out.printf("%d. %15s | W %.2f | %s\n", i+1, sideMenuList.get(i).getName(), sideMenuList.get(i).getPrice(), sideMenuList.get(i).getInfo());
       }
     }
     System.out.println("0. 뒤로가기");
