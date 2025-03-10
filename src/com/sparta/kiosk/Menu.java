@@ -7,12 +7,15 @@ public class Menu {
   private ArrayList<MenuItem> burgerList;
   private ArrayList<MenuItem> drinkList;
   private ArrayList<MenuItem> sideMenuList;
+  private ArrayList<String> categoryList;
 
   Menu() {
     burgerList = new ArrayList<>();
     drinkList = new ArrayList<>();
     sideMenuList = new ArrayList<>();
+    categoryList = new ArrayList<>();
     initMenuItems();
+    initCategoryList();
   }
 
   // 메뉴 아이템 초기화
@@ -32,6 +35,13 @@ public class Menu {
     sideMenuList.add(new MenuItem("French Fries", 1.0, "감자 튀김"));
     sideMenuList.add(new MenuItem("Cheese Sticks", 3.5, "치즈 스틱"));
     sideMenuList.add(new MenuItem("Cone Salad", 3.0, "콘샐러드"));
+  }
+
+  // 카테고리 리스트 초기화
+  private void initCategoryList() {
+    categoryList.add("Burgers");
+    categoryList.add("Drinks");
+    categoryList.add("Side menu");
   }
 
   // 카테고리 출력 메소드
@@ -83,5 +93,10 @@ public class Menu {
     else {
       return null;
     }
+  }
+
+  // 카테고리를 반환하는 메소드
+  public String getCategory(int category) {
+    return categoryList.get(category-1);
   }
 }
