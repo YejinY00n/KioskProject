@@ -23,4 +23,16 @@ public class MenuItem {
   public String getInfo() {
     return info;
   }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public void setPrice(double price) {
+    this.price = price;
+  }
+
+  public void setInfo(String info) {
+    this.info = info;
+  }
 }
