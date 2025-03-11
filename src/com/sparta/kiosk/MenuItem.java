@@ -4,7 +4,7 @@ package com.sparta.kiosk;
 public class MenuItem {
   private String name;            // 메뉴명
   private double price;           // 가격
-  private String info;     // 메뉴 설명
+  private String info;            // 메뉴 설명
 
   public MenuItem(String name, double price, String info) {
     this.name = name;

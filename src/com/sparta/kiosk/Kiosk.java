@@ -3,6 +3,7 @@ package com.sparta.kiosk;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+
 // 프로그램 순서 및 흐름 제어 담당
 public class Kiosk {
   private Scanner sc;
@@ -33,7 +34,7 @@ public class Kiosk {
           System.out.println("4. Orders\t\t 장바구니를 확인 후 주문합니다.");
           System.out.println("5. Cancel\t\t 진행중인 주문을 취소합니다.");
         }
-
+        // 종료
         category = sc.nextInt();
         if(category == 0) {
           break;
@@ -47,7 +48,14 @@ public class Kiosk {
 
           // 주문 후 장바구니 비우기
           if(input == 1) {
-            System.out.printf("주문이 완료되었습니다. 금액은 W %.2f 입니다.\n\n", cart.totalCart());
+            System.out.println("할인 정보를 입력해주세요");
+            for(int i=0; i < Discount.values().length; i++) {
+              System.out.printf("%d. %10s :  %.1f %% \n", i+1, Discount.values()[i].getTarget(), Discount.values()[i].getDiscountRate()*100);
+            }
+            System.out.print(">> ");
+            input = sc.nextInt();
+
+            System.out.printf("주문이 완료되었습니다. 금액은 W %.2f 입니다.\n\n", cart.totalCart()*(1-Discount.values()[input-1].getDiscountRate()));
             cart.clearCart();
             continue;
           }
@@ -90,5 +98,4 @@ public class Kiosk {
       }
     }
   }
-
 }
