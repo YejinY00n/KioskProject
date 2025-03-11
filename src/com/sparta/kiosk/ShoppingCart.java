@@ -15,6 +15,11 @@ public class ShoppingCart {
     cart.add(item);
   }
 
+  // 장바구니 비우기 메소드
+  public void clearCart() {
+    cart.clear();
+  }
+
   // 장바구니 출력 메소드
   public void printCart() {
     System.out.println("[ Orders ]");
@@ -25,8 +30,8 @@ public class ShoppingCart {
   public double totalCart() {
     double total = 0;
 
-    for(int i=0; i<cart.size(); i++) {
-      total += cart.get(i).getPrice();
+    for (MenuItem menuItem : cart) {
+      total += menuItem.getPrice();
     }
 
     return total;
