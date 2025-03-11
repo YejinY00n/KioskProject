@@ -15,6 +15,11 @@ public class ShoppingCart {
     cart.add(item);
   }
 
+  // 장바구니 메뉴 삭제 메소드
+  public void deleteItemCart(String menuName) {
+    cart.removeIf(menuItem -> menuItem.getName().equals(menuName));   // TODO: 스트림 방식?
+  }
+
   // 장바구니 비우기 메소드
   public void clearCart() {
     cart.clear();

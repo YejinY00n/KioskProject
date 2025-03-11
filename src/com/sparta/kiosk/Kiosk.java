@@ -23,6 +23,7 @@ public class Kiosk {
     int itemIndex = -1;
     int cartAdd = -1;
     int input = -1;
+    String tmpInput = null;
     MenuItem selectedMenu = null;
 
     // 사용자 입력이 0 이면 종료
@@ -41,10 +42,33 @@ public class Kiosk {
         }
         // 장바구니 확인 후 주문
         else if(category == 4) {
-          System.out.println("아래와 같이 주문하시겠습니까?");
-          cart.printCart();
-          System.out.println("1. 주문 \t2. 메뉴판");
-          input = sc.nextInt();
+          while(true) {
+            System.out.println("아래와 같이 주문하시겠습니까?");
+            cart.printCart();
+            System.out.println("1. 주문 \t2. 장바구니 변경\t3. 메뉴판");
+            input = sc.nextInt();
+
+            // 장바구니에 담긴 메뉴 삭제
+            if(input == 2) {
+              System.out.println("장바구니에서 삭제할 메뉴명을 입력해주세요 (뒤로가기: exit)");
+              cart.printCart();
+              System.out.print(">> ");
+              tmpInput = sc.nextLine(); // TODO: 공백 포함 메뉴명 입력 시 오류
+
+              // 뒤로가기
+              if(tmpInput.equals("exit")) {
+                continue;
+              }
+              else {
+                cart.deleteItemCart(tmpInput);
+                System.out.printf("장바구니에서 %s 메뉴가 삭제 되었습니다.\n\n", tmpInput);
+                continue;
+              }
+            }
+            else {
+              break;
+            }
+          }
 
           // 주문 후 장바구니 비우기
           if(input == 1) {
@@ -59,10 +83,15 @@ public class Kiosk {
             cart.clearCart();
             continue;
           }
-          // 메인 메뉴로 돌아가기
-          else if(input == 2) {
+          // 메뉴판 (메인 메뉴로 돌아가기)
+          else if(input == 3) {
             continue;
           }
+        }
+        // 진행 중인 주문 취소 (장바구니 비우기)
+        else if (input == 5) {
+          cart.clearCart();
+          continue;
         }
 
         // 메뉴 입력
