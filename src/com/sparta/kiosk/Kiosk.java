@@ -31,7 +31,7 @@ public class Kiosk {
       try {
         // 카테고리 출력
         menu.printCategory(cart == null);
-        category = sc.nextInt();
+        category = Integer.parseInt(sc.nextLine());
 
         // 0 입력 시, 종료
         if(category == 0) {
@@ -41,7 +41,7 @@ public class Kiosk {
         else if(category >= 1 && category <= 3) {
           // 메뉴 카테고리 출력 후 메뉴 선택
           menu.printMenu(category);
-          itemIndex = sc.nextInt();
+          itemIndex = Integer.parseInt(sc.nextLine());
 
           // 0 입력 시, 뒤로 가기 (메인 메뉴로)
           if(itemIndex == 0) {
@@ -57,7 +57,7 @@ public class Kiosk {
             System.out.println("1. 확인\t2. 취소");
 
             // 1 입력 시, 장바구니 메뉴 추가
-            cartAdd = sc.nextInt();
+            cartAdd = Integer.parseInt(sc.nextLine());
             if(cartAdd == 1) {
               cart.addCart(selectedMenu);
             }
@@ -75,14 +75,14 @@ public class Kiosk {
             cart.printCart();
             System.out.println("1. 주문 \t2. 장바구니 변경\t3. 메뉴판");
             System.out.print(">> ");
-            input = sc.nextInt();
+            input = Integer.parseInt(sc.nextLine());
 
             // 장바구니에 담긴 메뉴 삭제
             if(input == 2) {
               System.out.println("장바구니에서 삭제할 메뉴명을 입력해주세요 (뒤로가기: exit)");
               cart.printCart();
               System.out.print(">> ");
-              tmpInput = sc.nextLine(); // TODO: 공백 포함 메뉴명 입력 시 오류
+              tmpInput = sc.nextLine();
 
               // 뒤로가기
               if(tmpInput.equals("exit")) {
@@ -106,7 +106,7 @@ public class Kiosk {
               System.out.printf("%d. %10s :  %.1f %% \n", i+1, Discount.values()[i].getTarget(), Discount.values()[i].getDiscountRate()*100);
             }
             System.out.print(">> ");
-            input = sc.nextInt();
+            input = Integer.parseInt(sc.nextLine());
 
             System.out.printf("주문이 완료되었습니다. 금액은 W %.2f 입니다.\n\n", cart.totalCart()*(1-Discount.values()[input-1].getDiscountRate()));
             cart.clearCart();
