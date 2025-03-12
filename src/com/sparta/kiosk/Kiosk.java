@@ -29,23 +29,52 @@ public class Kiosk {
     // 사용자 입력이 0 이면 종료
     while(true) {
       try {
-        // 카테고리 입력
-        menu.printCategory();
-        if(cart != null) {
-          System.out.println("4. Orders\t\t 장바구니를 확인 후 주문합니다.");
-          System.out.println("5. Cancel\t\t 진행중인 주문을 취소합니다.");
-        }
-        // 종료
+        // 카테고리 출력
+        menu.printCategory(cart == null);
         category = sc.nextInt();
+
+        // 0 입력 시, 종료
         if(category == 0) {
           break;
         }
+        // 메뉴 카테고리 중 선택
+        else if(category >= 1 && category <= 3) {
+          // 메뉴 카테고리 출력 후 메뉴 선택
+          menu.printMenu(category);
+          itemIndex = sc.nextInt();
+
+          // 0 입력 시, 뒤로 가기 (메인 메뉴로)
+          if(itemIndex == 0) {
+            continue;
+          }
+          // 메뉴 선택
+          else {
+            selectedMenu = menu.getMenuItems(category, itemIndex);
+            System.out.printf("선택한 메뉴: %15s | W %.2f | %s\n\n", selectedMenu.getName(), selectedMenu.getPrice(), selectedMenu.getInfo());
+
+            // 장바구니 메뉴 추가
+            System.out.println("위 메뉴를 장바구니에 추가하시겠습니까?");
+            System.out.println("1. 확인\t2. 취소");
+
+            // 1 입력 시, 장바구니 메뉴 추가
+            cartAdd = sc.nextInt();
+            if(cartAdd == 1) {
+              cart.addCart(selectedMenu);
+            }
+            // 2 입력 시, 메뉴 추가 취소
+            else if(cartAdd == 2) {
+              continue;
+            }
+          }
+        }
+
         // 장바구니 확인 후 주문
         else if(category == 4) {
           while(true) {
             System.out.println("아래와 같이 주문하시겠습니까?");
             cart.printCart();
             System.out.println("1. 주문 \t2. 장바구니 변경\t3. 메뉴판");
+            System.out.print(">> ");
             input = sc.nextInt();
 
             // 장바구니에 담긴 메뉴 삭제
@@ -64,7 +93,7 @@ public class Kiosk {
                 System.out.printf("장바구니에서 %s 메뉴가 삭제 되었습니다.\n\n", tmpInput);
                 continue;
               }
-            }
+            } // 장바구니 비우기 or 메뉴판 메뉴로 이동
             else {
               break;
             }
@@ -81,7 +110,7 @@ public class Kiosk {
 
             System.out.printf("주문이 완료되었습니다. 금액은 W %.2f 입니다.\n\n", cart.totalCart()*(1-Discount.values()[input-1].getDiscountRate()));
             cart.clearCart();
-            continue;
+            continue;           // 메인 메뉴로 이동
           }
           // 메뉴판 (메인 메뉴로 돌아가기)
           else if(input == 3) {
@@ -89,37 +118,10 @@ public class Kiosk {
           }
         }
         // 진행 중인 주문 취소 (장바구니 비우기)
-        else if (input == 5) {
+        else if (category == 5) {
           cart.clearCart();
           continue;
         }
-
-        // 메뉴 입력
-        menu.printMenu(category);
-        itemIndex = sc.nextInt();
-
-        // 0 입력 시, 뒤로 가기 (메인 메뉴로)
-        if(itemIndex == 0) {
-          continue;
-        }
-
-        selectedMenu = menu.getMenuItems(category, itemIndex);
-        System.out.printf("선택한 메뉴: %15s | W %.2f | %s\n\n", selectedMenu.getName(), selectedMenu.getPrice(), selectedMenu.getInfo());
-
-        // 장바구니 메뉴 추가
-        System.out.println("위 메뉴를 장바구니에 추가하시겠습니까?");
-        System.out.println("1. 확인\t2. 취소");
-
-        // 1 입력 시, 장바구니 메뉴 추가
-        cartAdd = sc.nextInt();
-        if(cartAdd == 1) {
-          cart.addCart(selectedMenu);
-        }
-        // 2 입력 시, 메뉴 추가 취소
-        else if(cartAdd == 2) {
-          continue;
-        }
-
       } // TODO: 예외 처리 추가
       catch (InputMismatchException e) { // 유효하지 않은 입력 예외 처리
         System.out.println("유효하지 않은 입력입니다.");

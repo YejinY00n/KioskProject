@@ -8,14 +8,17 @@ public class Menu {
   private ArrayList<MenuItem> drinkList;
   private ArrayList<MenuItem> sideMenuList;
   private ArrayList<String> categoryList;
+  private ArrayList<String> orderCategoryList;
 
   Menu() {
     burgerList = new ArrayList<>();
     drinkList = new ArrayList<>();
     sideMenuList = new ArrayList<>();
     categoryList = new ArrayList<>();
+    orderCategoryList = new ArrayList<>();
     initMenuItems();
     initCategoryList();
+    initOrderCategoryList();
   }
 
   // 메뉴 아이템 초기화
@@ -44,12 +47,27 @@ public class Menu {
     categoryList.add("Side menu");
   }
 
-  // 카테고리 출력 메소드
-  public void printCategory() {
+  private void initOrderCategoryList() {
+    orderCategoryList.add("Orders\t\t 장바구니를 확인 후 주문합니다.");
+    orderCategoryList.add("Cancel\t\t 진행중인 주문을 취소합니다.");
+  }
+
+  // 카테고리 출력 메소드, 장바구니가 비어있으면 관련 옵션 출력 X
+  public void printCategory(boolean isCartEmpty) {
+    // 메뉴 카테고리 출력
     System.out.println("[ SHAKESHACK MAIN MENU ]");
-    System.out.println("1. Bugers");
-    System.out.println("2. Drinks");
-    System.out.println("3. Side menu");
+    for(int i=0; i<categoryList.size(); i++) {
+      System.out.printf("%d. %10s\n", i+1, categoryList.get(i));
+    }
+
+    // 주문 카테고리 출력
+    if(!isCartEmpty) {
+      System.out.println("[ ORDERS ]");
+      for(int i=categoryList.size()+1; i < categoryList.size()+orderCategoryList.size()+1; i++) {
+        System.out.printf("%d. %10s\n", i, orderCategoryList.get(i-(categoryList.size()+1)));
+      }
+    }
+
     System.out.println("0. 종료");
     System.out.print(">> 카테고리를 선택해주세요: ");
   }
@@ -95,7 +113,7 @@ public class Menu {
     }
   }
 
-  // 카테고리를 반환하는 메소드
+  // 메뉴 카테고리를 반환하는 메소드
   public String getCategory(int category) {
     return categoryList.get(category-1);
   }
