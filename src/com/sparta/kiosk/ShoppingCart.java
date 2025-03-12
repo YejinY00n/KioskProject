@@ -47,4 +47,9 @@ public class ShoppingCart {
     System.out.println("[ Total ]");
     System.out.printf("W %.2f\n", totalCart());
   }
+
+  // 장바구니 비어있는지
+  public boolean isEmpty() {
+    return cart.isEmpty();
+  }
 }

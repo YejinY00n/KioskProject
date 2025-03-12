@@ -52,7 +52,7 @@ public class Menu {
     orderCategoryList.add("Cancel\t\t 진행중인 주문을 취소합니다.");
   }
 
-  // 카테고리 출력 메소드, 장바구니가 비어있으면 관련 옵션 출력 X
+  // 카테고리 출력 메소드
   public void printCategory(boolean isCartEmpty) {
     // 메뉴 카테고리 출력
     System.out.println("[ SHAKESHACK MAIN MENU ]");
@@ -60,7 +60,7 @@ public class Menu {
       System.out.printf("%d. %10s\n", i+1, categoryList.get(i));
     }
 
-    // 주문 카테고리 출력
+    // 장바구니에 물건이 있다면 주문 카테고리 출력
     if(!isCartEmpty) {
       System.out.println("[ ORDERS ]");
       for(int i=categoryList.size()+1; i < categoryList.size()+orderCategoryList.size()+1; i++) {
