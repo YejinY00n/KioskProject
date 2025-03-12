@@ -21,18 +21,20 @@ public class Kiosk {
   public void start() {
     int category = -1;
     int itemIndex = -1;
-    int cartAdd = -1;
     int input = -1;
     String tmpInput = null;
     MenuItem selectedMenu = null;
 
     // 사용자 입력이 0 이면 종료
     while (true) {
-      // TODO : 예외 처리 로직 추가
-
       // 카테고리 출력
       menu.printCategory(cart.isEmpty());
-      category = Integer.parseInt(sc.nextLine());
+      try {
+        category = Integer.parseInt(sc.nextLine());
+      } catch (NumberFormatException e) {
+        System.out.println("유효하지 않은 입력입니다.");
+        continue;
+      }
 
       // 0 입력 시, 종료
       if (category == 0) {
@@ -42,7 +44,12 @@ public class Kiosk {
       else if (category >= 1 && category <= 3) {
         // 메뉴 카테고리 출력 후 메뉴 선택
         menu.printMenu(category);
-        itemIndex = Integer.parseInt(sc.nextLine());
+        try {
+          itemIndex = Integer.parseInt(sc.nextLine());
+        } catch (NumberFormatException e) {
+          System.out.println("유효하지 않은 입력입니다.");
+          continue;
+        }
 
         // 0 입력 시, 뒤로 가기 (메인 메뉴로)
         if (itemIndex == 0) {
@@ -59,17 +66,21 @@ public class Kiosk {
           System.out.println("1. 확인\t2. 취소");
 
           // 1 입력 시, 장바구니 메뉴 추가
-          cartAdd = Integer.parseInt(sc.nextLine());
-          if (cartAdd == 1) {
+          try {
+            input = Integer.parseInt(sc.nextLine());
+          } catch (NumberFormatException e) {
+            System.out.println("유효하지 않은 입력입니다.");
+            continue;
+          }
+          if (input == 1) {
             cart.addCart(selectedMenu);
           }
           // 2 입력 시, 메뉴 추가 취소
-          else if (cartAdd == 2) {
+          else if (input == 2) {
             continue;
           }
         }
       }
-
       // 장바구니 확인 후 주문
       else if (category == 4) {
         while (true) {
@@ -77,19 +88,27 @@ public class Kiosk {
           cart.printCart();
           System.out.println("1. 주문 \t2. 장바구니 변경\t3. 메뉴판");
           System.out.print(">> ");
-          input = Integer.parseInt(sc.nextLine());
+          try {
+            input = Integer.parseInt(sc.nextLine());
+          } catch (NumberFormatException e) {
+            System.out.println("유효하지 않은 입력입니다.");
+            continue;
+          }
 
           // 장바구니에 담긴 메뉴 삭제
           if (input == 2) {
             System.out.println("장바구니에서 삭제할 메뉴명을 입력해주세요 (뒤로가기: exit)");
             cart.printCart();
             System.out.print(">> ");
-            tmpInput = sc.nextLine();
+            try {
+              tmpInput = sc.nextLine();
+            } catch (Exception e) {
+              System.out.println("유효하지 않은 입력입니다.");
+              continue;
+            }
 
             // 뒤로가기
-            if (tmpInput.equals("exit")) {
-              continue;
-            } else {
+            if(!tmpInput.equals("exit")) {
               cart.deleteItemCart(tmpInput);
               System.out.printf("장바구니에서 %s 메뉴가 삭제 되었습니다.\n\n", tmpInput);
               continue;
@@ -99,7 +118,6 @@ public class Kiosk {
             break;
           }
         }
-
         // 주문 후 장바구니 비우기
         if (input == 1) {
           System.out.println("할인 정보를 입력해주세요");
@@ -108,7 +126,12 @@ public class Kiosk {
                 Discount.values()[i].getDiscountRate() * 100);
           }
           System.out.print(">> ");
-          input = Integer.parseInt(sc.nextLine());
+          try {
+            input = Integer.parseInt(sc.nextLine());
+          } catch (NumberFormatException e) {
+            System.out.println("유효하지 않은 입력입니다.");
+            continue;
+          }
 
           System.out.printf("주문이 완료되었습니다. 금액은 W %.2f 입니다.\n\n",
               cart.totalCart() * (1 - Discount.values()[input - 1].getDiscountRate()));

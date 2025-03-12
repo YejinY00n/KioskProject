@@ -1,6 +1,7 @@
 package com.sparta.kiosk;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 // 장바구니 클래스
 public class ShoppingCart {
@@ -17,7 +18,9 @@ public class ShoppingCart {
 
   // 장바구니 메뉴 삭제 메소드
   public void deleteItemCart(String menuName) {
-    cart.removeIf(menuItem -> menuItem.getName().equals(menuName));   // TODO: 스트림 방식?
+    cart = (ArrayList<MenuItem>)cart.stream()
+        .filter(item -> !item.getName().equals(menuName))
+        .collect(Collectors.toList());
   }
 
   // 장바구니 비우기 메소드

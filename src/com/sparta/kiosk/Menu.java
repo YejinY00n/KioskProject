@@ -113,7 +113,7 @@ public class Menu {
     }
   }
 
-  // 메뉴 카테고리를 반환하는 메소드
+  // 메뉴 카테고리 이름을 반환하는 메소드
   public String getCategory(int category) {
     return categoryList.get(category-1);
   }
