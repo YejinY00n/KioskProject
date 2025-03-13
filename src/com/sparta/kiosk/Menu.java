@@ -56,14 +56,14 @@ public class Menu {
   // 카테고리 출력 메소드
   public void printCategory(boolean isCartEmpty) {
     // 메뉴 카테고리 출력
-    System.out.println("[ SHAKESHACK MAIN MENU ]");
+    System.out.println("[ \uD83C\uDF54 SHAKESHACK MAIN MENU \uD83C\uDF54 ]");
     for(int i=0; i<categoryList.size(); i++) {
       System.out.printf("%d. %10s\n", i+1, categoryList.get(i));
     }
 
     // 장바구니에 물건이 있다면 주문 카테고리 출력
     if(!isCartEmpty) {
-      System.out.println("[ ORDERS ]");
+      System.out.println("[ \uD83E\uDDFE ORDERS \uD83E\uDDFE ]");
       for(int i=categoryList.size()+1; i < categoryList.size()+orderCategoryList.size()+1; i++) {
         System.out.printf("%d. %10s\n", i, orderCategoryList.get(i-(categoryList.size()+1)));
       }
@@ -75,21 +75,21 @@ public class Menu {
 
   // 메뉴 출력 메소드
   public void printMenu(int category) {
-    System.out.println("[ SHAKESHACK MAIN MENU ]");
+    System.out.println("[ \uD83D\uDC81 SHAKESHACK MAIN MENU \uD83D\uDC81 ]");
     if(category == 1) {
-      System.out.println("\n=== HAMBURGER ===");
+      System.out.println("\n=== \uD83C\uDF54 HAMBURGER \uD83C\uDF54 ===");
       for(int i=0; i<burgerList.size(); i++) {
         System.out.printf("%d. %15s | W %.2f | %s\n", i+1, burgerList.get(i).getName(), burgerList.get(i).getPrice(), burgerList.get(i).getInfo());
       }
     }
     else if(category == 2) {
-      System.out.println("\n=== DRINKS ===");
+      System.out.println("\n=== \uD83E\uDD64 DRINKS \uD83E\uDD64 ===");
       for(int i=0; i<drinkList.size(); i++) {
         System.out.printf("%d. %15s | W %.2f | %s\n", i+1, drinkList.get(i).getName(), drinkList.get(i).getPrice(), drinkList.get(i).getInfo());
       }
     }
     else if(category == 3) {
-      System.out.println("\n=== SIDE MENU ===");
+      System.out.println("\n=== \uD83C\uDF5F SIDE MENU \uD83C\uDF5F ===");
       for(int i=0; i< sideMenuList.size(); i++) {
         System.out.printf("%d. %15s | W %.2f | %s\n", i+1, sideMenuList.get(i).getName(), sideMenuList.get(i).getPrice(), sideMenuList.get(i).getInfo());
       }

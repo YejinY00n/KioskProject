@@ -98,7 +98,7 @@ public class Kiosk {
 
           // 장바구니에 담긴 메뉴 삭제
           if (input == 2) {
-            System.out.println("장바구니에서 삭제할 메뉴명을 입력해주세요 (뒤로가기: exit)");
+            System.out.println("장바구니에서 삭제할 메뉴명을 입력해주세요 (뒤로가기: x)");
             cart.printCart();
             System.out.print(">> ");
             try {
@@ -109,7 +109,7 @@ public class Kiosk {
             }
 
             // 뒤로가기
-            if(!tmpInput.equals("exit")) {
+            if(!tmpInput.equalsIgnoreCase("x")) {
               cart.deleteItemCart(tmpInput);
               System.out.printf("장바구니에서 %s 메뉴가 삭제 되었습니다.\n\n", tmpInput);
               continue;
