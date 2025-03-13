@@ -51,9 +51,8 @@ public class ShoppingCart {
     double totalPrice = 0;
 
     for (Entry<MenuItem, Integer> menuItem : cart.entrySet()) {
-      totalPrice += menuItem.getKey().getPrice();
+      totalPrice += (menuItem.getKey().getPrice() * menuItem.getValue());   // 메뉴 가격 * 메뉴 개수
     }
-
     return totalPrice;
   }
 
@@ -64,7 +63,6 @@ public class ShoppingCart {
     for (Entry<MenuItem, Integer> menuItem : cart.entrySet()) {
       totalCount += menuItem.getValue();
     }
-
     return totalCount;
   }
 
