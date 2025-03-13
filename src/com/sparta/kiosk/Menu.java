@@ -1,14 +1,15 @@
 package com.sparta.kiosk;
 
 import java.util.ArrayList;
+import java.util.List;
 
 // MenuItem 클래스 관리
 public class Menu {
-  private ArrayList<MenuItem> burgerList;
-  private ArrayList<MenuItem> drinkList;
-  private ArrayList<MenuItem> sideMenuList;
-  private ArrayList<String> categoryList;
-  private ArrayList<String> orderCategoryList;
+  private List<MenuItem> burgerList;
+  private List<MenuItem> drinkList;
+  private List<MenuItem> sideMenuList;
+  private List<String> categoryList;
+  private List<String> orderCategoryList;
 
   Menu() {
     burgerList = new ArrayList<>();

@@ -86,6 +86,7 @@ public class Kiosk {
         while (true) {
           System.out.println("아래와 같이 주문하시겠습니까?");
           cart.printCart();
+          cart.printTotalCart();
           System.out.println("1. 주문 \t2. 장바구니 변경\t3. 메뉴판");
           System.out.print(">> ");
           try {
@@ -134,7 +135,7 @@ public class Kiosk {
           }
 
           System.out.printf("주문이 완료되었습니다. 금액은 W %.2f 입니다.\n\n",
-              cart.totalCart() * (1 - Discount.values()[input - 1].getDiscountRate()));
+              cart.getTotalPrice() * (1 - Discount.values()[input - 1].getDiscountRate()));
           cart.clearCart();
           continue;           // 메인 메뉴로 이동
         }
